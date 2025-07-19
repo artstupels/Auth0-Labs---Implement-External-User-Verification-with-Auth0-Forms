@@ -14,7 +14,5 @@
     37500
   ],
   "shutdownAction": "stopCompose",
-  "postStartCommand": "npm install -g npm@latest && npm run init",
-  "waitFor": "postStartCommand",
   "remoteUser": "node"
 }
