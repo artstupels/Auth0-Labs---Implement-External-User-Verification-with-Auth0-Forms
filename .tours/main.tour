@@ -121,6 +121,5 @@
             "title": "Expected results",
             "description": "Expected results\n----------------\n\nIf everything worked well, here's what you should see when you are completing the invitation code redemption flow that we've just designed and developed.\n\n![Form execution](./.tours/img/E_1.png)\n\n### Something went wrong\n\nIf something went wrong and the flow failed at some point, here's how to self-troubleshoot the problem.\n\n1.  When debugging an Action script, you should use the [Actions Real-time Logs](https://auth0.com/docs/customize/actions/actions-real-time-logs \"https://auth0.com/docs/customize/actions/actions-real-time-logs\"), which includes all console.log output and exceptions.\n\n2.  If you run into any issues with Auth0 Forms Flows, you should check for errors in the Flows [Execution and Debugger](https://auth0.com/docs/customize/forms/flows/flow-execution-and-debugger \"https://auth0.com/docs/customize/forms/flows/flow-execution-and-debugger\").\n\n3.  For any issues during the Authentication, you should [Tenant Logs](https://auth0.com/docs/deploy-monitor/logs/view-log-events \"https://auth0.com/docs/deploy-monitor/logs/view-log-events\").\n\n4. You can also download the Form we were creating in this Lab from here [PrivateBetaFormExported.json](./.tours/PrivateBetaFormExported.json). It's in JSON format and can be imported when you start over from **+ Create Form**"
         }
-    ],
-    "isPrimary": true
+    ]
 }
