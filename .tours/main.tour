@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "notmain4",
+  "title": "LAB",
   "steps": [
     {
       "title": "1. Set up the MockDatabase",
