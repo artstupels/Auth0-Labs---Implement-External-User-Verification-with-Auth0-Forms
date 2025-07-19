@@ -1,0 +1,10 @@
+{
+  "comments.maxHeight": false,
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "never"
+  },
+  "codetour.promptForWorkspaceTours": false,
+  "codetour.showMarkers": false
+}
