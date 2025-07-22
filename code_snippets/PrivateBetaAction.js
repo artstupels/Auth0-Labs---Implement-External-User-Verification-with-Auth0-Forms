@@ -64,7 +64,7 @@ exports.onContinuePostLogin = async (event, api) => {
 
         /* Now we need to fetch our MockDatabase to get a list of invitations available */
         const fetchMockDatabase = await auth0ManagementAPI.users.get({ id: event.secrets.MOCKDATABASE_USER_ID })
-        const INVITATION_LIST = fetchMockDatabase.app_metadata.invitation_codes
+        const INVITATION_LIST = fetchMockDatabase.data.app_metadata.invitation_codes
 
         /* We want to remove the used invitation code from the database now */
         const UPDATED_INVITATION_LIST = INVITATION_LIST.filter(item => item !== INVITATION_CODE)
