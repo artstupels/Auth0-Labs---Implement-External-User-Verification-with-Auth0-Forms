@@ -1,21 +1,46 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "LAB",
+  "title": "#1 - Set up the MockDatabase",
   "steps": [
     {
-      "title": "1. Set up the MockDatabase",
-      "description": "### 1. Set up the MockDatabase\n\n ***\n> ⚠️ Please note that we use it only for testing and development purposes, and such a workaround shouldn’t be used in production. ⚠️\n> ***\n\nFor this particular Lab, we don’t want you to set up a real external database. As a workaround, we will create a **special Auth0 user** in your Auth0 Tenant and use its **app\\_metadata** to store the invitation codes. As per our design, we need to read the database during the Form flow and write to it in the Auth0 Action. To achieve this for our MockDatabase, we will use the **Auth0 integration** in Forms and will use the **Auth0 Node.js Management API client** in the Auth0 Action. Both require an M2M application in the same Auth0 tenant that is granted access to the Auth0 Management API.\n\n\n***\n\n🗒️ In this Lab, you will need to take notes, such as storing a configuration variable until required. Please store the notes in a Notepad, Stickies, VSCode, or any other text editor.\n\nHere's the convenient starter note to ensure you have all the values we require for this Lab.\n\n```yaml\n# M2M Application\n    Client ID: xxx \n    Client Secret: xxx \n    Domain: xxx \n# MockDatabase\n    User ID: xxx \n# Form\n    Form ID: xxx\n```\n\n",
+      "title": "Lab design",
+      "file": "notes.yml",
+      "description": "### Lab design\n\n ***\n> ⚠️ Please note that we use an Auth0's user's `app_metadata` to store invitation codes. This is a workaround that should only for testing and development purposes. In production, you would securely store these codes in an external database. ⚠️\n> ***\n\nTo simplify this lab, we do not require you to create an external database to store user invitation codes. As a workaround, we will create a **special Auth0 user** in your Auth0 Tenant and use its `app_metadata` to store the invitation codes. \n\nAs per our design, we need to read the database during the Form Flow and write to it in the Auth0 Post-Login Action. To achieve this for our MockDatabase, we will use the **Auth0 integration** in Forms and the **Auth0 Node.js Management API client** in the Auth0 Action. Both require an M2M application in the same Auth0 tenant that is granted access to the Auth0 Management API.\n\nThroughout this lab, you will need to record configuration values. You are provided `notes.yml` (opened above) for this purpose. You will be prompted to record different values here throughout this lab.\n\n\n\n\n",
+      "line": 8
+    },
+    {
+      "title": "Create a Machine-to-Machine application",
+      "description": "### Create a Machine-to-Machine application\n\nSince we are going to use a mock user’s `app_metadata` object as our database, we will need to authorize a Machine-to-Machine (M2M) application to read and update the Auth0 users through the Auth0 Management API. \n\n1.  In the **Auth0 Dashboard**, go to **Applications** > **Applications**.\n    \n2.  Select the **+ Create Application** button.\n    \n3.  In the **Name** field, enter **M2MForForms**.\n\n4.  Select **Machine to Machine Application** as the application type.\n    \n5.  Select the **Create** button.\n    \n6.  In the Authorize Machine to Machine Application window, select **Auth0 Management API**.\n    \n7.  Under **Permissions**, select the `read:users` and `update:users_app_metadata` permissions.\n    \n8.  Select the **Authorize** button.\n    \n9.  Go to the Settings tab. You will record these values in the next steps.",
       "line": 1
     },
     {
-      "title": "1A. Create a Machine-to-Machine application",
-      "description": "### 1A. Create a Machine-to-Machine application\n\nIt is required to manage our MockDatabase in the Auth0 Action and the Auth0 Form Flow. Since we are going to use a mock user’s metadata object as our database, we will need to authorize this application to read and update the Auth0 users.\n\n1.  In the **Auth0 Dashboard**, go to **Applications** > **Applications**.\n    \n2.  Click **+ Create Application**.\n    \n3.  In the name field, enter _\"M2MForForms\"_.\n\n4.  Choose the **Machine to Machine Applications** as the application type.\n    \n5.  Click **Create**.\n    \n6.  In the **Authorize Machine to Machine Application** window, select the **Auth0 Management API**.\n    \n7.  Under **Permissions**, select the `read:users` and `update:users_app_metadata` permissions.\n    \n8.  Click **Authorize**.\n    \n9.  Go to the **Settings** tab and take note of the **Domain**, **Client ID,** and **Client Secret**.",
+      "file": "notes.yml",
+      "description": "# Record the M2M App Client ID\n 1. From your Machine-to-Machine app's Settings tab, copy the Client ID and paste it on the highlighted line above next to **Client ID:**. ",
+      "line": 2
+    },
+    {
+      "file": "notes.yml",
+      "description": "# Record the M2M App Client Secret\n 1. Copy the Client Secret and paste it on the highlighted line above next to **Client Secret:**. \n",
+      "line": 3
+    },
+    {
+      "file": "notes.yml",
+      "description": "# Record the M2M App Domain\n 1. Copy the Domain and paste it on the highlighted line above next to **Domain:**. \n",
+      "line": 4
+    },
+    {
+      "title": "Create a MockDatabase user",
+      "description": "### Create a MockDatabase user\n\nNext, we will create a mock user to use as our temporary database. The Auth0 user has a convenient **app\\_metadata** field, which is a JSON object and editable via the Auth0 Dashboard.\n\n1.  From the Auth0 Dashboard, go to **User Management** > **Users**\n    \n2.  Select the **+ Create User** button and select **Create via UI**.\n    \n3.  Select/enter the following values in the fields:\n    \n    *   **Connection**: Username-Password-Authentication\n        \n    *   **Email:** `MockDatabaseForForms@example.com`\n        \n        *   Username and Phone are optional\n            \n    *   **Password**: Any password that matches the password strength requirement for this connection.\n        \n4.  Select the **Create** button.\n    ",
       "line": 1
     },
     {
-      "title": "1B. Create a MockDatabase user",
-      "description": "### 1B. Create a MockDatabase user\n\nWe are going to create a mock user to use as our temporary database. The Auth0 user has a convenient **app\\_metadata** field, which is a JSON object and editable via the Auth0 Dashboard.\n\n1.  In the **Auth0 Dashboard**, go to **User Management** > **Users**\n    \n2.  Click **+ Create User** and select **Create via UI**.\n    \n3.  Select/enter the following values in the fields:\n    \n    *   **Connection**: Username-Password-Authentication\n        \n    *   **Email:** _“`MockDatabaseForForms@example.com`”_\n        \n        *   Username and Phone are optional\n            \n    *   **Password**: Any password that matches the password strength requirement for this connection.\n        \n4.  Click **Create**.\n    \n5.  Once the user is created, scroll down to the **App Metadata (app_metadata)** field (not the User Metadata field) and paste this JSON object (which will be used as our JSON database):\n    ***\n    ```json\n    {\n        \"invitation_codes\": [\n            \"A0-1234567\",\n            \"A0-2345678\",\n            \"A0-3456789\",\n            \"A0-4567890\",\n            \"A0-5678901\"\n        ]\n    }\n    ```\n    ***\n6.  Click **Save**.\n    \n7.  Scroll up and take note of the **user_id**, which should look like `auth0|686....`",
-      "line": 1
+      "title": "Update the MockDatabase user's app_metadata",
+      "description": "## Update the MockDatabase user's app_metadata\n\n1. For the user you just created, scroll down to the **App Metadata (app_metadata)** field (NOT the User Metadata field) and paste the JSON object below:\n\n\n    ```json\n    {\n        \"invitation_codes\": [\n            \"A0-1234567\",\n            \"A0-2345678\",\n            \"A0-3456789\",\n            \"A0-4567890\",\n            \"A0-5678901\"\n        ]\n    }\n    ```\n\n1.  Select the  **Save** button.\n    "
+    },
+    {
+      "file": "notes.yml",
+      "description": "## Record the MockDatabase User ID:\n\n1.  For the same user we're using as our MockDatabase, scroll up and copy the **user_id** (which should look like `auth0|686....`) and paste it on the line above next to **UserID:**.",
+      "line": 6
     },
     {
       "title": "2. Create an Auth0 Form",
