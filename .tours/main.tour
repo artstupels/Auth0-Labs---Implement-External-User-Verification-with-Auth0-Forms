@@ -31,16 +31,16 @@
     },
     {
       "title": "Create a MockDatabase user",
-      "description": "### Create a MockDatabase user\n\nNext, we will create a mock user to use as our temporary database. The Auth0 user has a convenient **app\\_metadata** field, which is a JSON object and editable via the Auth0 Dashboard.\n\n1.  From the Auth0 Dashboard, go to **User Management** > **Users**\n    \n2.  Select the **+ Create User** button and select **Create via UI**.\n    \n3.  Select/enter the following values in the fields:\n    \n    *   **Connection**: Username-Password-Authentication\n        \n    *   **Email:** `MockDatabaseForForms@example.com`\n        \n        *   Username and Phone are optional\n            \n    *   **Password**: Any password that matches the password strength requirement for this connection.\n        \n4.  Select the **Create** button.\n    ",
+      "description": "### Create a MockDatabase user\n\nNext, we will create a mock user to use as our temporary database. The Auth0 user has a convenient **app\\_metadata** field, which is a JSON object and editable via the Auth0 Dashboard.\n\n1.  From the Auth0 Dashboard, go to **User Management** > **Users**\n    \n2.  Select the **+ Create User** button and select **Create via UI**.\n    \n3.  Select/enter the following values in the fields:\n    \n    *   **Connection**: Username-Password-Authentication\n        \n    *   **Email:** `MockDatabaseForForms@example.com`\n        \n        *   Username and Phone are optional\n            \n    *   **Password**: `MockUserPassword1*` (or other password that matches the configured password strength for this database connection)\n        \n4.  Select the **Create** button.\n    ",
       "line": 1
     },
     {
       "title": "Update the MockDatabase user's app_metadata",
-      "description": "## Update the MockDatabase user's app_metadata\n\n1. For the user you just created, scroll down to the **App Metadata (app_metadata)** field (NOT the User Metadata field) and paste the JSON object below:\n\n\n    ```json\n    {\n        \"invitation_codes\": [\n            \"A0-1234567\",\n            \"A0-2345678\",\n            \"A0-3456789\",\n            \"A0-4567890\",\n            \"A0-5678901\"\n        ]\n    }\n    ```\n\n1.  Select the  **Save** button.\n    "
+      "description": "## Update the MockDatabase user's app_metadata\n\n1. For the user you just created, navigate to the **App Metadata (app_metadata)** field (NOT the User Metadata field) and paste the JSON object below:\n\n\n    ```json\n    {\n        \"invitation_codes\": [\n            \"A0-1234567\",\n            \"A0-2345678\",\n            \"A0-3456789\",\n            \"A0-4567890\",\n            \"A0-5678901\"\n        ]\n    }\n    ```\n\n1.  Select the  **Save** button.\n    "
     },
     {
       "file": "notes.yml",
-      "description": "## Record the MockDatabase User ID:\n\n1.  For the same user we're using as our MockDatabase, scroll up and copy the **user_id** (which should look like `auth0|686....`) and paste it on the line above next to **UserID:**.",
+      "description": "## Record the MockDatabase User ID:\n\n1.  For the same user we're using as our MockDatabase, navigate to the top of the page and copy the **user_id** (which should look like `auth0|686....`) and paste it on the line above next to **UserID:**",
       "line": 6
     }
   ]
