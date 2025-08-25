@@ -5,22 +5,12 @@
   "steps": [
     {
       "title": "Create an Auth0 Form",
-      "description": "### Lab objective\n\nNext, we will create the Auth0 Form to which users will be redirected, and that’s where they will submit the invitation code.",
+      "description": "### Lab objective\n\nLaunching a private beta for your app that requires external user verification? There are many solutions to this use case, but with Auth0 Forms, you can gate access to app login without blocking user sign-up, so they can easily join in when your app goes public. It's as easy as configuring an Auth0 Form and writing a Post-Login Action to prompt the user for a provided verification code.\n\nFirst, we will create the Auth0 Form to which users will be redirected and where they will submit the invitation code.",
       "line": 1
-    },
-    {
-      "title": "Create an Auth0 Vault connection",
-      "description": "### Create an Auth0 Vault connection\n\nBefore creating a Form, we must create an **Auth0 Vault connection** that will allow us to fetch the **MockDatabase** user’s **app_metadata** during the Form completion.\n\n1.  From the Auth0 Dashboard, go to **Actions** > **Forms**.\n\n1.  On the Forms page, select on your **tenant name** in the top left corner (this should start with `dev-`).\n    \n2.  Select **Vault**.\n\n    ![Vault button](https://cdn.auth0.com/website/auth0-training/oktane25/2A_1.png)\n    \n3.  Select **Add Vault Connection**.\n    \n4.  Select **Auth0** and select **Continue**.\n    \n5.  Name the connection **Auth0ForFormsLab**\n\n1. Select **Continue**.\n    \n",
-      "line": 1
-    },
-    {
-      "file": "notes.yml",
-      "description": "## Configure the Auth0 Vault connection\n\n\nNow, you need to provide the Machine-to-machine application's **Tenant domain**, **Client ID**, and **Client Secret,** you noted in the doc opened above.\n\n1. Fill out the fields for **Tenant domain**, **Client ID**, and **Client Secret*** using the values you recorded above.\n    \n1.  Select the **Add Vault Connection** button.",
-      "line": 4
     },
     {
       "title": "Create a Form",
-      "description": "## Create a Form\n\n1.  Go back to the Forms landing page by selecting the **Forms** button on the top navigation bar.\n    \n2.  Select **Create form**.\n    \n3.  Select **Start from scratch**.\n    \n4.  In the top left corner, you will see **Blank form** text. Select it to **change the Form name** to **PrivateBetaForm**.\n    \nIn the next steps, we'll add Auth0 Form nodes according to our design below:\n\n![Complete Form Diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2B_1.png)",
+      "description": "## Create a Form\n\n1.  In Auth0 Dashboard, select **Actions**, and then select **Forms**.\n    \n2.  Select **Create form**.\n    \n3.  Select **Start from scratch**.\n    \n4.  In the top left corner, you will see **Blank form** text. Select it to **change the Form name** to **PrivateBetaForm**.\n    \nIn the next steps, we'll add Auth0 Form nodes according to our design below:\n\n![Complete Form Diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2B_1.png)",
       "line": 1
     },
     {
@@ -63,18 +53,12 @@
       "line": 1
     },
     {
-      "title": "Configure Flow node: Get user action",
-      "file": "notes.yml",
-      "description": "## Configure Flow node: Get user action\nLet's cconfigure the Flow node you just created in the last step.\n\n1.  Just below **Start**, select the **+** button.\n    >The List of actions pane will open.\n\n3.  Navigate to the Auth0 section and select the **Get user** action.\n\n4.  When the **Get user** action is selected, update its configuration:\n\n    -   Set ID to **FETCH_MOCKDATABASE**.\n\n    -   Select **Auth0ForFormsLab** in the **Vault connection** dropdown.\n\n    -   In the **User ID** field, paste the MockDatabase user's ID, which is available on the highlighted line above.\n\n        ![Get user action](https://cdn.auth0.com/website/auth0-training/oktane25/2G_2.png)\n\n    -   Select **Save**.\n",
-      "line": 2
-    },
-    {
       "title": "Configure Flow node: If/then condition",
-      "description": "## Configure Flow node: If/then condition\n\n1.  Select the **+** button below the **Auth0** action.\n\n2.  Select the **If/then condition** logic and create the following condition:\n\n    -   Top field: `{{actions.FETCH_MOCKDATABASE.body.app_metadata.invitation_codes}}`\n\n    -   Conditional statement: **includes**\n\n    -   Bottom field: `{{fields.INVITATION_CODE}}`\n\n        ![If/then condition](https://cdn.auth0.com/website/auth0-training/oktane25/2G_3.png)\n\n        Note that the variables should appear highlighted, as in the screenshot above. What we do here is test whether the user-submitted **Invitation Code** exists in the array of invitation codes returned by our **MockDatabase**.\n\n    -   Select **Save**.\n"
+      "description": "## Configure Flow node: If/then condition\n\n1.  Select the **+** button just below the **Start** block.\n\n2.  Select the **If/then condition** logic and create the following condition:\n\n    -   Top field: `{{vars.INVITATION_LIST}}`\n\n    -   Conditional statement: **includes**\n\n    -   Bottom field: `{{fields.INVITATION_CODE}}`\n\n        ![If/then condition](https://cdn.auth0.com/website/auth0-training/oktane25/2G_3_V2.png)\n\n        Note that the variables should appear highlighted, as in the screenshot above. What we do here is test whether the user-submitted **Invitation Code** exists in the array of invitation codes returned by the **INVITATION_LIST** shared variable sent by the Auth0 Action that we are going to create later.\n\n    -   Select **Save**."
     },
     {
       "title": "Configure Flow node: False path",
-      "description": "## Configure Flow node: False path\n\n1.  Select the **+** button under the **FALSE** path of the **If/then condition**.\n\n8.  Select the **Show error message** action.\n\n9.  In the **Error message** field, type **The invitation code doesn't exist!**\n\n10. Select **Save**.\n\n11. Select **Publish** to save the Flow. It should look like this:\n\n    ![Flow diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2G_4.png)\n"
+      "description": "## Configure Flow node: False path\n\n1.  Select the **+** button under the **FALSE** path of the **If/then condition**.\n\n8.  Select the **Show error message** action.\n\n9.  In the **Error message** field, type **The invitation code doesn't exist!**\n\n10. Select **Save**.\n\n11. Select **Publish** to save the Flow. It should look like this:\n\n    ![Flow diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2G_4_V2.png)\n"
     },
     {
       "title": "Verify Flow node configuration",

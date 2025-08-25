@@ -6,33 +6,31 @@
     {
       "title": "Render the Form",
       "description": "## Render the Form\n\nLet's execute our flow.\n\n1.  From the Auth0 Dashboard, go to [**Authentication** > **Authentication Profile**](https://manage.auth0.com/#/authentication-profiles).\n\n2.  Select the **▷ Try** button. (You don't need to choose your login flow on this page; our test will work with any.)\n\n3.  Once the Login prompt opens, select the **Sign up** button.\n\n4.  Register for the application using an **Email address** and a **Password** of your choice. You shouldn't log in with the MockDatabaseForForms@example.com user, as this user is only reserved for managing the mock database.\n\n>  Once the registration is successful, the Auth0 Form should be rendered.\n",
-      "line": 1
-    },
-    {
-      "title": "Test a valid invitation code",
-      "description": "## Test a valid invitation form\n\n\n1. When prompted with **Do you have the invitation code?**, select **Yes**.\n\n1. Enter a valid invitation code.\n\n    > You can use any of the invitation codes we keep in our MockDatabase:\n    > \n    > **A0-1234567, A0-2345678, A0-3456789, A0-4567890, A0-5678901**\n\n1. You should see an \"It works!\" message.\n",
+      "line": 1,
       "selection": {
         "start": {
-          "line": 8,
+          "line": 13,
           "character": 1
         },
         "end": {
-          "line": 10,
-          "character": 69
+          "line": 13,
+          "character": 75
         }
       }
     },
     {
-      "title": "Check the MockDatabase",
-      "description": "## Check the MockDatabase\n\nLet's check the MockDatabase user in the Auth0 Dashboard.\n\n1. From the Auth0 Dashboard, go to **User Management** > **Users**.\n1. Select **mockdatabaseforforms@example.com**.\n1. Navigate to the **app_metadata**.\n1. Notice that the invitation code you just used has been deleted from the JSON object since it's been used. If you try to use the same invitation code, it will be invalid.\n"
+      "file": "code_snippets/PrivateBetaAction.js",
+      "title": "Test a valid invitation code",
+      "description": "## Test a valid invitation form\n\n\n1. When prompted with **Do you have the invitation code?**, select **Yes**.\n\n1. Enter a valid invitation code.\n\n    > You can use any of the invitation codes we hardcoded in our Action code.\n    > \n    > **A0-1234567, A0-2345678, A0-3456789, A0-4567890, A0-5678901**\n\n1. You should see an \"It works!\" message.\n",
+      "line": 10
     },
     {
       "title": "Check your user metadata",
-      "description": "## Check your user metadata\n\nNow let's check the user you just signed up with to log in to the application.\n\n1. From the Auth0 Dashboard, go to **User Management** > **Users**.\n1. Select the user you just created.\n1. Navigate to the **app_metadata**.\n1. Notice the \"isPrivateBetaUser\": true property. This was added by our Action so that the Form will not be rendered for this user again since they already successfully signed up for the private beta with a valid invitation code.\n1. To verify, you can try logging in as the same user and see that the Form is not rendered again.\n1. For the next test, set `isPrivateBetaUser` to `false`."
+      "description": "## Check your user metadata\n\nNow let's check the user you just signed up with to log in to the application.\n\n1. From the Auth0 Dashboard, go to **User Management** > **Users**.\n1. Select the user you just created.\n1. Navigate to the **app_metadata**.\n1. Notice the \"isPrivateBetaUser\": true property. This was added by our Action so that the Form will not be rendered for this user again since they already successfully signed up for the private beta with a valid invitation code.\n1. To verify, you can try logging in as the same user and see that the Form is not rendered again.\n1. For the next test, set `isPrivateBetaUser` property to `false`."
     },
     {
       "title": "Test an invalid invitation code",
-      "description": "## Test an invalid invitation code\n\n\n1.  From the Auth0 Dashboard, go to [**Authentication** > **Authentication Profile**](https://manage.auth0.com/#/authentication-profiles).\n\n2.  Select the **▷ Try** button.\n\n3.  Login with the user you created when signing up.\n    > Since we set `isPrivateBetaUser` to `false`, the the Auth0 Form should be rendered again.\n\n4. This time, when prompted with **Do you have the invitation code?**, select **No**.\n\n5. You should see the message *Please visit our website to join the private beta version of our app.*\n\n6. Select **Back**.\n\n7. This time select **Yes**.\n\n8. Enter an invalid invitation code like 0123456789.\n\n9. Select **Continue**.\n\n10. You should see *The invitation code doesn't exist!*\n"
+      "description": "## Test an invalid invitation code\n\n\n1.  From the Auth0 Dashboard, go to [**Authentication** > **Authentication Profile**](https://manage.auth0.com/#/authentication-profiles).\n\n2.  Select the **▷ Try** button.\n\n3.  Login with the user you created when signing up.\n    > Since we set `isPrivateBetaUser` to `false` in the previous step, the the Auth0 Form should be rendered again.\n\n4. This time, when prompted with **Do you have the invitation code?**, select **No**.\n\n5. You should see the message *Please visit our website to join the private beta version of our app.*\n\n6. Select **Back**.\n\n7. This time select **Yes**.\n\n8. Enter an invalid invitation code like 0123456789.\n\n9. Select **Continue**.\n\n10. You should see *The invitation code doesn't exist!*\n"
     },
     {
       "title": "Expected results and troubleshooting",

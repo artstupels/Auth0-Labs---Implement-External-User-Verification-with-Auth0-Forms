@@ -16,7 +16,7 @@
     {
       "file": "code_snippets/PrivateBetaAction.js",
       "description": "## Define the Action script\n\n1. Notice that `PrivateBetaAction.js` has been opened above for you. Select and copy the contents of this file.\n2. Paste this script to your Action (replacing the code that was there before).\n\n3.  Select **Deploy**.\n",
-      "line": 86
+      "line": 72
     },
     {
       "title": "Add dependency to Action",
@@ -24,43 +24,13 @@
     },
     {
       "file": "code_snippets/PrivateBetaAction.js",
-      "description": "## Create secrets\n\n\nYou may have noticed in the above script that we are using variables instead of hardcoding values passed to `api.prompt.render(event.secrets.form_id)`. This means we need to create Secrets to store the values for these variables. You need to create five secrets for each of these variables.\n\n1.  FORM_ID\n\n2.  DOMAIN\n\n3.  M2M_CLIENT_ID\n\n4.  M2M_CLIENT_SECRET\n\n5.  MOCKDATABASE_USER_ID\n\nWe'll do this in the next steps.",
-      "line": 12
+      "description": "## Create secrets\n\n\nYou may have noticed in the above script that we are using a variable instead of hardcoding the FORM ID passed to the `api.prompt.render(event.secrets.FORM_ID)`. This means we need to create a Secret to store the value for this variables. ",
+      "line": 35
     },
     {
       "file": "notes.yml",
       "description": "## Create secrets: FORM_ID\n\n\n1.  Select the **Key icon** (Secrets) on the left pane of the **Auth0 Actions editor**.\n\n    ![Secrets](https://cdn.auth0.com/website/auth0-training/oktane25/3A_1.png)\n\n2.  Select the **Add Secret** button.\n\n3.  In the **Key** field type **FORM_ID**.\n\n4.  In the **Value** field, add your Form's ID, which you should see in the file opened above.\n\n    ![Secrets](https://cdn.auth0.com/website/auth0-training/oktane25/3A_2.png)\n\n5.  Select **Create**.\n",
-      "line": 8
-    },
-    {
-      "file": "notes.yml",
-      "description": "## Create secrets: DOMAIN\n\n\n1.  From the Secrets panel select the **Add Secret** button.\n\n3.  In the **Key** field type **DOMAIN**.\n\n4.  In the **Value** field, add your M2M app's Domain, which you should see in the file opened above.\n\n5.  Select **Create**.",
-      "line": 4,
-      "selection": {
-        "start": {
-          "line": 4,
-          "character": 4
-        },
-        "end": {
-          "line": 4,
-          "character": 61
-        }
-      }
-    },
-    {
-      "file": "notes.yml",
-      "description": "## Create secrets: M2M_CLIENT_ID\n\n\n1.  From the Secrets panel select the **Add Secret** button.\n\n3.  In the **Key** field type **M2M_CLIENT_ID**.\n\n4.  In the **Value** field, add your M2M app's Client ID, which you should see in the file opened above.\n\n5.  Select **Create**.",
       "line": 2
-    },
-    {
-      "file": "notes.yml",
-      "description": "## Create secrets: M2M_CLIENT_SECRET\n\n\n1.  From the Secrets panel select the **Add Secret** button.\n\n3.  In the **Key** field type **M2M_CLIENT_SECRET**.\n\n4.  In the **Value** field, add your M2M app's Client Secret, which you should see in the file opened above.\n\n5.  Select **Create**.",
-      "line": 3
-    },
-    {
-      "file": "notes.yml",
-      "description": "## Create secrets: MOCKDATABASE_USER_ID\n\n1.  From the Secrets panel select the **Add Secret** button.\n3.  In the **Key** field type **MOCKDATABASE_USER_ID**.\n\n4.  In the **Value** field, add the User ID off the Auth0 MockDatabase user you created, which you should see in the file opened above.\n\n5.  Select **Create**.\n6. When **all five variables** are added as secrets, ensure the list looks like the one below, and then select **Deploy**.\n\n    ![img](https://cdn.auth0.com/website/auth0-training/oktane25/3A_3.png)",
-      "line": 6
     },
     {
       "title": "Bind an Action to the Post Login trigger",

@@ -1,7 +1,7 @@
 {
   "version": "4.0.0",
   "form": {
-    "name": "PrivateBetaForm",
+    "name": "PrivateBetaFormEasy",
     "languages": {
       "primary": "en"
     },
@@ -184,17 +184,6 @@
       "name": "VERIFY_INVITATION_CODE",
       "actions": [
         {
-          "id": "FETCH_MOCKDATABASE",
-          "type": "AUTH0",
-          "action": "GET_USER",
-          "allow_failure": false,
-          "mask_output": false,
-          "params": {
-            "connection_id": "#CONN-1#",
-            "user_id": "auth0|68762bd35122470939116bae"
-          }
-        },
-        {
           "id": "if_then_condition_klrV",
           "type": "FLOW",
           "action": "BOOLEAN_CONDITION",
@@ -205,7 +194,7 @@
               "operands": [
                 {
                   "operands": [
-                    "{{actions.FETCH_MOCKDATABASE.body.app_metadata.invitation_codes}}",
+                    "{{vars.INVITATION_LIST}}",
                     "{{fields.INVITATION_CODE}}"
                   ],
                   "operator": "INCLUDES"
@@ -230,11 +219,5 @@
       ]
     }
   },
-  "connections": {
-    "#CONN-1#": {
-      "id": "ac_1PsJUb3ZeQ5WuqmdPNzrwx",
-      "app_id": "AUTH0",
-      "name": "Auth0ForFormsLab"
-    }
-  }
+  "connections": {}
 }
