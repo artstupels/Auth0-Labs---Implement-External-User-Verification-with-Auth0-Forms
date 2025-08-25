@@ -1,12 +1,9 @@
-/* To update a "mock database" user, we need to import the Auth0 Management API node client. */
-const ManagementClient = require('auth0').ManagementClient
-
-/* Adding an Action name here so we can tell that the console.log message is coming from this Action. */
+/* Adding an Action name here so we can tell that the console.log message is coming from this Action when debugging using the Action Logs */
 let i = 1
 const ActionNickname = `[AUTH0 PRIVATE BETA]`
 
 /* Since we don't have an actual database, we are going to send the list of the invitation codes
-that our form is going to accept when the user submits their invitation code */
+that our Form should accept when the user submits their invitation code. */
 const INVITATION_LIST = ["A0-1234567", "A0-2345678", "A0-3456789", "A0-4567890", "A0-5678901"]
 
 /* This function is executed after the user is successfully authenticated.  */
@@ -44,11 +41,10 @@ exports.onExecutePostLogin = async (event, api) => {
 
 }
 
-/* This function runs after the user completes the FORM, e.g., 
-it provides the correct invitation code. */
+/* This function runs after the user completes the FORM, e.g., when submits the correct invitation code. */
 exports.onContinuePostLogin = async (event, api) => {
 
-    /* Here, we a variables to get the INVITATION_CODE the user has used. 
+    /* Here, we define the INVITATION_CODE variabl that the use has submitted in the Auth0 Form. 
     Once the FORM is completed, the value should be returned. */
     const { INVITATION_CODE } = event.prompt.fields
 
@@ -56,7 +52,7 @@ exports.onContinuePostLogin = async (event, api) => {
 
         console.log(`${ActionNickname} ${i++} | A user submitted an invitation code: "${INVITATION_CODE}".`)
 
-        /* Since the invite code was verified during the FORM execution flow, 
+        /* Since the invitation code was verified during the FORM execution flow, 
         we are adding the marker to the user's "app_metadata" so this Action doesn't 
         redirect this user to the FORM next time. */
         api.user.setAppMetadata("isPrivateBetaUser", true)

@@ -1,27 +1,27 @@
 {
   "version": "4.0.0",
   "form": {
-    "name": "PrivateBetaFormEasy",
+    "name": "PrivateBetaForm EASY",
     "languages": {
       "primary": "en"
     },
     "nodes": [
       {
-        "id": "step_6t3q",
+        "id": "step_zcqo",
         "type": "STEP",
         "coordinates": {
-          "x": 178,
-          "y": 3
+          "x": 223,
+          "y": -3
         },
         "alias": "New step",
         "config": {
           "components": [
             {
-              "id": "rich_text_fiDK",
+              "id": "rich_text_pPaD",
               "category": "BLOCK",
               "type": "RICH_TEXT",
               "config": {
-                "content": "<h1>Heads up! </h1><p></p><p>This application is in private beta. Do you have the invitation code?</p>"
+                "content": "<p>Heads up! This application is in private beta. Do you have the invitation code?</p>"
               }
             },
             {
@@ -35,7 +35,7 @@
               }
             },
             {
-              "id": "next_button_TOJb",
+              "id": "next_button_vIQw",
               "category": "BLOCK",
               "type": "NEXT_BUTTON",
               "config": {
@@ -43,21 +43,21 @@
               }
             }
           ],
-          "next_node": "router_ZcoU"
+          "next_node": "router_SHC6"
         }
       },
       {
-        "id": "router_ZcoU",
+        "id": "router_SHC6",
         "type": "ROUTER",
         "coordinates": {
-          "x": 693,
-          "y": 4
+          "x": 744,
+          "y": -3
         },
         "alias": "New router",
         "config": {
           "rules": [
             {
-              "id": "id_6752621084017",
+              "id": "id_7763007184896",
               "alias": "Has an invitation code?",
               "condition": {
                 "operands": [
@@ -71,18 +71,18 @@
                 ],
                 "operator": "AND"
               },
-              "next_node": "step_r0vM"
+              "next_node": "step_7ye4"
             }
           ],
-          "fallback": "step_ZazK"
+          "fallback": "step_DwCQ"
         }
       },
       {
-        "id": "step_r0vM",
+        "id": "step_7ye4",
         "type": "STEP",
         "coordinates": {
-          "x": 959,
-          "y": 5
+          "x": 1002,
+          "y": -142
         },
         "alias": "New step",
         "config": {
@@ -102,7 +102,7 @@
               }
             },
             {
-              "id": "next_button_DQyi",
+              "id": "next_button_qD0u",
               "category": "BLOCK",
               "type": "NEXT_BUTTON",
               "config": {
@@ -110,7 +110,7 @@
               }
             },
             {
-              "id": "previous_button_Ox2f",
+              "id": "previous_button_DX1h",
               "category": "BLOCK",
               "type": "PREVIOUS_BUTTON",
               "config": {
@@ -118,21 +118,21 @@
               }
             }
           ],
-          "next_node": "flow_HhCg"
+          "next_node": "flow_WB7A"
         }
       },
       {
-        "id": "step_ZazK",
+        "id": "step_DwCQ",
         "type": "STEP",
         "coordinates": {
-          "x": 962,
-          "y": 345
+          "x": 1009,
+          "y": 248
         },
         "alias": "New step",
         "config": {
           "components": [
             {
-              "id": "rich_text_Vq2w",
+              "id": "rich_text_9Sc2",
               "category": "BLOCK",
               "type": "RICH_TEXT",
               "config": {
@@ -140,7 +140,7 @@
               }
             },
             {
-              "id": "previous_button_VOFE",
+              "id": "previous_button_lNt4",
               "category": "BLOCK",
               "type": "PREVIOUS_BUTTON",
               "config": {
@@ -151,11 +151,11 @@
         }
       },
       {
-        "id": "flow_HhCg",
+        "id": "flow_WB7A",
         "type": "FLOW",
         "coordinates": {
-          "x": 1470,
-          "y": 5
+          "x": 1586,
+          "y": -53
         },
         "alias": "New flow",
         "config": {
@@ -165,17 +165,17 @@
       }
     ],
     "start": {
-      "next_node": "step_6t3q",
+      "next_node": "step_zcqo",
       "coordinates": {
-        "x": -25,
-        "y": 2
+        "x": 0,
+        "y": 0
       }
     },
     "ending": {
       "resume_flow": true,
       "coordinates": {
-        "x": 1780,
-        "y": 7
+        "x": 1930,
+        "y": -34
       }
     }
   },
@@ -184,7 +184,7 @@
       "name": "VERIFY_INVITATION_CODE",
       "actions": [
         {
-          "id": "if_then_condition_klrV",
+          "id": "if_then_condition_kpR2",
           "type": "FLOW",
           "action": "BOOLEAN_CONDITION",
           "allow_failure": false,
@@ -204,7 +204,7 @@
             },
             "else": [
               {
-                "id": "show_error_message_oJ0s",
+                "id": "show_error_message_L0fJ",
                 "type": "FLOW",
                 "action": "ERROR_MESSAGE",
                 "allow_failure": false,

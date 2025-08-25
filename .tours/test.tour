@@ -5,7 +5,7 @@
   "steps": [
     {
       "title": "Render the Form",
-      "description": "## Render the Form\n\nLet's execute our flow.\n\n1.  From the Auth0 Dashboard, go to [**Authentication** > **Authentication Profile**](https://manage.auth0.com/#/authentication-profiles).\n\n2.  Select the **▷ Try** button. (You don't need to choose your login flow on this page; our test will work with any.)\n\n3.  Once the Login prompt opens, select the **Sign up** button.\n\n4.  Register for the application using an **Email address** and a **Password** of your choice. You shouldn't log in with the MockDatabaseForForms@example.com user, as this user is only reserved for managing the mock database.\n\n>  Once the registration is successful, the Auth0 Form should be rendered.\n",
+      "description": "## Render the Form\n\nLet's execute our flow.\n\n1.  From the Auth0 Dashboard, go to [**Authentication** > **Authentication Profile**](https://manage.auth0.com/#/authentication-profiles).\n\n2.  Select the **▷ Try** button. (You don't need to choose your login flow on this page; our test will work with any.)\n\n3.  Once the Login prompt opens, select the **Sign up** button.\n\n4.  Register for the application using an **Email address** and a **Password** of your choice. \n\n>  Once the registration is successful, the Auth0 Form should be rendered.\n",
       "line": 1,
       "selection": {
         "start": {
@@ -36,6 +36,10 @@
       "title": "Expected results and troubleshooting",
       "description": "## Expected results and troubleshooting\n\nIf everything worked well, here's what you should see when you are completing the invitation code redemption flow that we've just designed and developed.\n\n![Form execution](https://cdn.auth0.com/website/auth0-training/oktane25/E_1.png)\n\n### Troubleshooting\n\nIf something went wrong and the flow failed at some point, here's how to self-troubleshoot the problem.\n\n1.  When debugging an Action script, you should use the [Actions Real-time Logs](https://auth0.com/docs/customize/actions/actions-real-time-logs \"https://auth0.com/docs/customize/actions/actions-real-time-logs\"), which includes all console.log output and exceptions.\n\n2.  If you run into any issues with Auth0 Forms Flows, you should check for errors in the Flows [Execution and Debugger](https://auth0.com/docs/customize/forms/flows/flow-execution-and-debugger \"https://auth0.com/docs/customize/forms/flows/flow-execution-and-debugger\").\n\n3.  For any issues during the Authentication, you should access [Tenant Logs](https://auth0.com/docs/deploy-monitor/logs/view-log-events \"https://auth0.com/docs/deploy-monitor/logs/view-log-events\").\n\n4. You can also download the Form we were creating in this Lab from here [PrivateBetaFormExported.json](./code_snippets/PrivateBetaFormExported.json). It's in JSON format and can be imported when you start over from **+ Create Form**",
       "line": 1
+    },
+    {
+      "title": "Check the related blog post",
+      "description": "## Check the related blog post\n\nPlease have a look at the following article where the similar requirment was achieved using Auth0 Forms:\n\n[External User Verification with Forms](https://auth0.com/blog/external-user-verification-with-forms/)\n\nThank you!"
     }
   ]
 }

@@ -20,7 +20,7 @@
     },
     {
       "title": "Create a Router node",
-      "description": "## Create a Router node\n\nAs our first Step node asks a user if they have an invitation code, we need to create a Router node that will route a user to the next screen based on their selected answer.\n\n1.  In the floating box at the bottom, select **Router**.\n\n    ![Select Router](https://cdn.auth0.com/website/auth0-training/oktane25/2D_1.png)\n\n2.  A new Router is created. Select this new Router, and the **Router settings** pane should open.\n\n3.  From the Router Settings pane, select **Rule 1**.\n\n4.  Change Rule 1's **Alias** to **Has an invitation code?**.\n\n5. Still in the Rule, select the **+** button (Add variable) of the first input field.\n\n6. Select a **YES_OR_NO** field.\n\n7.   The conditional statement should be **is equal to**.\n\n8.  In the bottom field, type **true**.\n\n9.  Confirm it looks like this and then select **Save,** and then **Save** again:\n\n    ![Router Rule](https://cdn.auth0.com/website/auth0-training/oktane25/2D_2.png)\n\n7.  Now you must add the Router to the Form sequence. To do this, follow these steps:\n\n    1.  **Delete the link** between the **first Step** and the **Ending screen** nodes.\n\n        ![Delet link](https://cdn.auth0.com/website/auth0-training/oktane25/2D_3.png)\n\n    2.  Select the **Yellow Dot** on the right side of the **first Step node (output port)** and drag it to the **Yellow Dot** on the left side of the **Router node (input port)**.\n\n        ![Connecting nodes](https://cdn.auth0.com/website/auth0-training/oktane25/2D_4.png)\n\n8.  Our Form should look like this:\n\n    ![Form at this stage](https://cdn.auth0.com/website/auth0-training/oktane25/2D_5.png)\n\n    Note that there are a few warnings shown, as some of our nodes don't have connections to other nodes. We will fix it later, as we need to add a few more between the Router and the Ending screen nodes.\n\n9.  Select **Publish** in the top right corner to save the current Form to avoid losing the progress.",
+      "description": "## Create a Router node\n\nAs our first Step node asks a user if they have an invitation code, we need to create a Router node that will route a user to the next screen based on their selected answer.\n\n1.  In the floating box at the bottom, select **Router**.\n\n    ![Select Router](https://cdn.auth0.com/website/auth0-training/oktane25/2D_1.png)\n\n2.  A new Router is created. Select this new Router, and the **Router settings** pane should open.\n\n3.  From the Router Settings pane, select **Rule 1**.\n\n4.  Change Rule 1's **Alias** to **Has an invitation code?**.\n\n5. Still in the Rule, select the **+** button (Add variable) of the first input field.\n\n6. Select a **YES_OR_NO** field.\n\n7.   The conditional statement should be **is equal to**.\n\n8.  In the bottom field, type **true**.\n\n9.  Confirm it looks like this and then select **Save,** and then **Save** again:\n\n    ![Router Rule](https://cdn.auth0.com/website/auth0-training/oktane25/2D_2.png)\n\n10.  Select **Publish** in the top right corner to save the current Form to avoid losing the progress.",
       "line": 1
     },
     {
@@ -54,7 +54,17 @@
     },
     {
       "title": "Configure Flow node: If/then condition",
-      "description": "## Configure Flow node: If/then condition\n\n1.  Select the **+** button just below the **Start** block.\n\n2.  Select the **If/then condition** logic and create the following condition:\n\n    -   Top field: `{{vars.INVITATION_LIST}}`\n\n    -   Conditional statement: **includes**\n\n    -   Bottom field: `{{fields.INVITATION_CODE}}`\n\n        ![If/then condition](https://cdn.auth0.com/website/auth0-training/oktane25/2G_3_V2.png)\n\n        Note that the variables should appear highlighted, as in the screenshot above. What we do here is test whether the user-submitted **Invitation Code** exists in the array of invitation codes returned by the **INVITATION_LIST** shared variable sent by the Auth0 Action that we are going to create later.\n\n    -   Select **Save**."
+      "description": "## Configure Flow node: If/then condition\n\n1.  Select the **+** button just below the **Start** block.\n\n2.  Select the **If/then condition** logic and create the following condition:\n\n    -   Top field: `{{vars.INVITATION_LIST}}`\n\n    -   Conditional statement: **includes**\n\n    -   Bottom field: `{{fields.INVITATION_CODE}}`\n\n        ![If/then condition](https://cdn.auth0.com/website/auth0-training/oktane25/2G_3_V2.png)\n\n        Note that the variables should appear highlighted, as in the screenshot above. What we do here is test whether the user-submitted **INVITATION_CODE** exists in the array of invitation codes returned by the **INVITATION_LIST** shared variable sent by the Auth0 Action that we are going to create later.\n\n    -   Select **Save**.",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 256
+        },
+        "end": {
+          "line": 15,
+          "character": 258
+        }
+      }
     },
     {
       "title": "Configure Flow node: False path",
