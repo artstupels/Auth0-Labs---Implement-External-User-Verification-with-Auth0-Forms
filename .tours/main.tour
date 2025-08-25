@@ -1,47 +1,88 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "#1 - Set up the MockDatabase",
-  "nextTour": "#2 - Create an Auth0 Form",
+  "title": "#2 - Create an Auth0 Form",
+  "nextTour": "#3 - Create an Auth0 Action",
   "steps": [
     {
-      "title": "Lab objective",
+      "title": "Create an Auth0 Form",
+      "description": "### Lab objective\n\nLaunching a private beta for your app that requires external user verification? There are many solutions to this use case, but with Auth0 Forms, you can gate access to app login without blocking user sign-up, so they can easily join in when your app goes public. It's as easy as configuring an Auth0 Form and writing a Post-Login Action to prompt the user for a provided verification code.\n\nFirst, we will create the Auth0 Form to which users will be redirected and where they will submit the invitation code.",
+      "line": 1
+    },
+    {
+      "title": "Create a Form",
+      "description": "## Create a Form\n\n1.  In Auth0 Dashboard, select **Actions**, and then select **Forms**.\n    \n2.  Select **Create form**.\n    \n3.  Select **Start from scratch**.\n    \n4.  In the top left corner, you will see **Blank form** text. Select it to **change the Form name** to **PrivateBetaForm**.\n    \nIn the next steps, we'll add Auth0 Form nodes according to our design below:\n\n![Complete Form Diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2B_1.png)",
+      "line": 1
+    },
+    {
+      "title": "The first Step node",
+      "description": "## The first Step node\n\nYou will see an empty **Step** node connected to the **Start** and **Ending screen** nodes. Let’s edit it:\n\n1.  From the **Components** pane, drag and drop the **Rich text** block component on this Step node.\n\n    ![Complete Form Diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2C_1.png)\n\n    1.  In the **Block settings** pane, add the following text: \n    >Heads up! This application is in private beta. Do you have the invitation code?\n        \n    2.  Select **Save**.\n        \n2.  Now, drag the **Boolean** field component from the **Components** pane and drop it **between** the **Rich text** and the **Continue** button.\n\n    ![Complete Form Diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2C_2.png)\n\n    1.  In the **Field settings** pane, do the following:\n        *  Change the **ID** to **YES_OR_NO**.\n        \n        * Uncheck **Label**.\n        \n        * Select **Required**.  \n            \n        ![Complete Form Diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2C_3.png)\n            \n        *   Select **Save**.\n            \n3.  Select **Publish** in the top right corner to save the current Form to avoid losing the progress.",
+      "line": 1
+    },
+    {
+      "title": "Create a Router node",
+      "description": "## Create a Router node\n\nAs our first Step node asks a user if they have an invitation code, we need to create a Router node that will route a user to the next screen based on their selected answer.\n\n1.  In the floating box at the bottom, select **Router**.\n\n    ![Select Router](https://cdn.auth0.com/website/auth0-training/oktane25/2D_1.png)\n\n2.  A new Router is created. Select this new Router, and the **Router settings** pane should open.\n\n3.  From the Router Settings pane, select **Rule 1**.\n\n4.  Change Rule 1's **Alias** to **Has an invitation code?**.\n\n5. Still in the Rule, select the **+** button (Add variable) of the first input field.\n\n6. Select a **YES_OR_NO** field.\n\n7.   The conditional statement should be **is equal to**.\n\n8.  In the bottom field, type **true**.\n\n9.  Confirm it looks like this and then select **Save,** and then **Save** again:\n\n    ![Router Rule](https://cdn.auth0.com/website/auth0-training/oktane25/2D_2.png)\n\n10.  Select **Publish** in the top right corner to save the current Form to avoid losing the progress.",
+      "line": 1
+    },
+    {
+      "title": "Add Router to Form sequence",
+      "description": "## Add Router to Form sequence\n\nNow you must add the Router to the Form sequence. \n\n1.  Delete **the link** between the **first Step** and the **Ending screen** nodes.\n\n    ![Delete link](https://cdn.auth0.com/website/auth0-training/oktane25/2D_3.png)\n\n2.  Select the **Yellow Dot** on the right side of the **first Step node (output port)** and drag it to the **Yellow Dot** on the left side of the **Router node (input port)**.\n\n    ![Connecting nodes](https://cdn.auth0.com/website/auth0-training/oktane25/2D_4.png)\n\n3.  Our Form should now look like this:\n\n    ![Form at this stage](https://cdn.auth0.com/website/auth0-training/oktane25/2D_5.png)\n\n    > Note that there are a few warnings shown, as some of our nodes don't have connections to other nodes. We will fix it later, as we need to add a few more between the Router and the Ending screen nodes.\n\n9.  Select **Publish** in the top right corner to save the current Form to avoid losing the progress."
+    },
+    {
+      "title": "Create the YES Step node",
+      "description": "## Create the YES Step node\n\nLet's create a Step where a user must provide an invitation code if they've selected **YES** in the previous step.\n\n1.  In the floating box at the bottom, select **Step**.\n\n2.  Drag the **Text** field component from the **Components** pane and drop it above the **Continue** button.\n\n3.  Select the Text field component and in the **Field settings** pane, make the following changes:\n\n    -   Change the **ID** value to **INVITATION_CODE**. We can use the randomly generated ID, but for convenience, we will change it to a custom value to reference it in the next step.\n\n    -   Keep **Label** selected.\n\n    -   Select **Required**.\n\n    -   Update the **Label** value to **Please provide your invitation code here:**.\n\n    -   Set **Placeholder text** to **A0-...**.\n\n    -   Set both **Min. length** and **Max. length** values to **10**.\n\n        ![Field settings](https://cdn.auth0.com/website/auth0-training/oktane25/2E_1.png)\n\n    -   Select **Save**.\n\n4.  Drag the **Previous button** block component from the **Components** pane and drop it below the **Continue** button on the step you just created. This will allow a user to go to the previous screen.\n\n5.  Connect the **TOP output port** (top righthand yellow dot) of the Router step to the **input port** (lefthand yellow dot) of this Step component.\n\n6.  Now our Form should look like this:\n\n    ![Form at this stage](https://cdn.auth0.com/website/auth0-training/oktane25/2E_2.png)\n\n7.  Select **Publish** in the top right corner to save the current Form to avoid losing the progress.",
+      "line": 1
+    },
+    {
+      "title": "Create the NO Step node",
+      "description": "## Create the NO Step node\n\nLet's create a Step a user should end on if they don't have an invitation code.\n\n1.  In the floating box at the bottom, select **Step**.\n\n2.  Drag the **Rich text** block component from the **Components** pane and drop it above the **Continue** button.\n\n3.  Select the **Rich text** component and in the **Block settings** pane, make the following changes:\n\n    -   Change the **Rich text** to: **Please visit our website to join the private beta version of our app.**\n\n    -   Select **Save**.\n\n4.  Select the **Continue** button, and then select the **Trash can icon** in the **Block settings** pane to delete this component. We don't need our users to continue if they don't have an invitation code.\n\n    ![Delete block](https://cdn.auth0.com/website/auth0-training/oktane25/2F_1.png)\n\n5.  Drag the **Previous button** block component from the **Components** pane and drop it below the **Rich text** component. This will allow a user to go to the previous screen.\n\n6.  Connect the **BOTTOM output port** (bottom righthand yellow dot) of the **Router node** to the **input port** (lefthand yellow dot) of this **Step node**.\n\n7.  Our Form now looks like this:\n\n    ![Form at this stage](https://cdn.auth0.com/website/auth0-training/oktane25/2F_2.png)\n\n8.  Select **Publish** in the top right corner to save the current Form and avoid losing progress. This is important, as we are going to create a Flow in the next steps and want to access the variables available in this Form.",
+      "line": 1,
+      "selection": {
+        "start": {
+          "line": 11,
+          "character": 40
+        },
+        "end": {
+          "line": 11,
+          "character": 110
+        }
+      }
+    },
+    {
+      "title": "Create a Flow node",
+      "description": "## Create a Flow node\n\nWhen a user submits the invitation code, we need to check it against our database to verify that it is valid. To achieve this, we will need to use a Flow.\n\n1.  In the floating box at the bottom, select **Flow**.\n\n1.  When the Flow node is selected, the **Flow settings** pane appears on the right.\n    > Here, we can select a Flow to use, but in our case, we need to select the **Create New Flow** button as we don't have any Flows yet.\n\n1.  Set the new Flow's name to **VERIFY_INVITATION_CODE** and select **Create**.\n\n    ![Flow name](https://cdn.auth0.com/website/auth0-training/oktane25/2G_1.png)\n\n5.  Verify that this flow is now selected on the **Flow settings** page, and then select **Edit Flow**.\n    > This will open a new **Flow Editor** tab in your browser. We'll configure this Flow in the next step.",
+      "line": 1
+    },
+    {
+      "title": "Configure Flow node: If/then condition",
+      "description": "## Configure Flow node: If/then condition\n\n1.  Select the **+** button just below the **Start** block.\n\n2.  Select the **If/then condition** logic and create the following condition:\n\n    -   Top field: `{{vars.INVITATION_LIST}}`\n\n    -   Conditional statement: **includes**\n\n    -   Bottom field: `{{fields.INVITATION_CODE}}`\n\n        ![If/then condition](https://cdn.auth0.com/website/auth0-training/oktane25/2G_3_V2.png)\n\n        Note that the variables should appear highlighted, as in the screenshot above. What we do here is test whether the user-submitted **INVITATION_CODE** exists in the array of invitation codes returned by the **INVITATION_LIST** shared variable sent by the Auth0 Action that we are going to create later.\n\n    -   Select **Save**.",
+      "selection": {
+        "start": {
+          "line": 15,
+          "character": 256
+        },
+        "end": {
+          "line": 15,
+          "character": 258
+        }
+      }
+    },
+    {
+      "title": "Configure Flow node: False path",
+      "description": "## Configure Flow node: False path\n\n1.  Select the **+** button under the **FALSE** path of the **If/then condition**.\n\n8.  Select the **Show error message** action.\n\n9.  In the **Error message** field, type **The invitation code doesn't exist!**\n\n10. Select **Save**.\n\n11. Select **Publish** to save the Flow. It should look like this:\n\n    ![Flow diagram](https://cdn.auth0.com/website/auth0-training/oktane25/2G_4_V2.png)\n"
+    },
+    {
+      "title": "Verify Flow node configuration",
+      "description": "## Verify Flow node configuration\n\nNow lets return to the **Forms** browser tab and ensure that the Flow node is configured correctly and the **VERIFY_INVITATION_CODE** flow is selected.\n\n\n![img](https://cdn.auth0.com/website/auth0-training/oktane25/2G_5.png)\n\nIf the **VERIFY_INVITATION_CODE** flow is not selected and doesn't exist in the dropdown, you might need to refresh the page and try again.\n"
+    },
+    {
+      "title": "Connect the Flow node to the YES Step node",
+      "description": "## Connect the Flow node to the YES Step node\n\n\nNow connect the Flow node to the **YES Step node** and complete the form by linking the **Ending screen** node.\n\n\n1.  Select the **Yellow Dot** on the right side of the **YES Step node (output port)** and drag it to the **Yellow Dot** on the left side of the **Flow node (input port)**.\n\n2.  Select the **Yellow Dot** on the right side of the **Flow node (output port)** and drag it to the **Yellow Dot** on the left side of the **Ending screen node**.\n\n3. Select **Publish** in the top right corner to save the current Form and avoid losing progress.\n\nNow your Form should look like this:\n\n![img](https://cdn.auth0.com/website/auth0-training/oktane25/2G_6.png)"
+    },
+    {
+      "title": "Get the Form ID",
       "file": "notes.yml",
-      "description": "### Lab objective\n\n ***\n> ⚠️ Please note that we use an Auth0's user's `app_metadata` to store invitation codes. This is a workaround that should only for testing and development purposes. In production, you would securely store these codes in an external database. ⚠️\n> ***\n\nTo simplify this lab, we do not require you to create an external database to store user invitation codes. As a workaround, we will create a **special Auth0 user** in your Auth0 Tenant and use its `app_metadata` to store the invitation codes. \n\nAs per our design, we need to read the database during the Form Flow and write to it in the Auth0 Post-Login Action. To achieve this for our MockDatabase, we will use the **Auth0 integration** in Forms and the **Auth0 Node.js Management API client** in the Auth0 Action. Both require an M2M application in the same Auth0 tenant that is granted access to the Auth0 Management API.\n\nThroughout this lab, you will need to record configuration values. You are provided `notes.yml` (opened above) for this purpose. You will be prompted to record different values here throughout this lab.\n\n\n\n\n",
+      "description": "## Get the Form ID\n\nTo render a Form during the authentication flow, we must know the Form ID of the form we want to render. It looks like *\"ap_123...890\"*.\n\n1. Select the **<> Render** button.\n\n\n    >When you select the **<> Render** button, you will notice that it generates the sample **Auth0 Action** script, which you can copy and paste. In our case, we just need to take a note of the Form ID as we will be creating a custom Auth0 Action in the step. You can find the Form ID passed to `api.prompt.render()`.\n\n1. Copy the Form ID and paste it on the line highlighted above next to **Form ID:**.\n\n    ![Action sample code](https://cdn.auth0.com/website/auth0-training/oktane25/2H_2.png)",
       "line": 8
-    },
-    {
-      "title": "Create a Machine-to-Machine application",
-      "description": "### Create a Machine-to-Machine application\n\nSince we are going to use a mock user’s `app_metadata` object as our database, we will need to authorize a Machine-to-Machine (M2M) application to read and update the Auth0 users through the Auth0 Management API. \n\n1.  In the **Auth0 Dashboard**, go to **Applications** > **Applications**.\n    \n2.  Select the **+ Create Application** button.\n    \n3.  In the **Name** field, enter **M2MForForms**.\n\n4.  Select **Machine to Machine Applications** as the application type.\n    \n5.  Select the **Create** button.\n    \n6.  In the Authorize Machine to Machine Application window, select **Auth0 Management API**.\n    \n7.  Under **Permissions**, select the `read:users` and `update:users_app_metadata` permissions.\n    \n8.  Select the **Authorize** button.\n    \n9.  Go to the Settings tab. You will record these values in the next steps.",
-      "line": 1
-    },
-    {
-      "file": "notes.yml",
-      "description": "# Record the M2M App Client ID\n 1. From your Machine-to-Machine app's Settings tab, copy the Client ID and paste it on the highlighted line above next to **Client ID:**. ",
-      "line": 2
-    },
-    {
-      "file": "notes.yml",
-      "description": "# Record the M2M App Client Secret\n 1. Copy the Client Secret and paste it on the highlighted line above next to **Client Secret:**. \n",
-      "line": 3
-    },
-    {
-      "file": "notes.yml",
-      "description": "# Record the M2M App Domain\n 1. Copy the Domain and paste it on the highlighted line above next to **Domain:**. \n",
-      "line": 4
-    },
-    {
-      "title": "Create a MockDatabase user",
-      "description": "### Create a MockDatabase user\n\nNext, we will create a mock user to use as our temporary database. The Auth0 user has a convenient **app\\_metadata** field, which is a JSON object and editable via the Auth0 Dashboard.\n\n1.  From the Auth0 Dashboard, go to **User Management** > **Users**\n    \n2.  Select the **+ Create User** button and select **Create via UI**.\n    \n3.  Select/enter the following values in the fields:\n    \n    *   **Connection**: Username-Password-Authentication\n        \n    *   **Email:** `MockDatabaseForForms@example.com`\n        \n        *   Username and Phone are optional\n            \n    *   **Password**: `MockUserPassword1*` (or other password that matches the configured password strength for this database connection)\n        \n4.  Select the **Create** button.\n    ",
-      "line": 1
-    },
-    {
-      "title": "Update the MockDatabase user's app_metadata",
-      "description": "## Update the MockDatabase user's app_metadata\n\n1. For the user you just created, navigate to the **App Metadata (app_metadata)** field (NOT the User Metadata field) and paste the JSON object below:\n\n\n    ```json\n    {\n        \"invitation_codes\": [\n            \"A0-1234567\",\n            \"A0-2345678\",\n            \"A0-3456789\",\n            \"A0-4567890\",\n            \"A0-5678901\"\n        ]\n    }\n    ```\n\n1.  Select the  **Save** button.\n    "
-    },
-    {
-      "file": "notes.yml",
-      "description": "## Record the MockDatabase User ID:\n\n1.  For the same user we're using as our MockDatabase, navigate to the top of the page and copy the **user_id** (which should look like `auth0|686....`) and paste it on the line above next to **UserID:**",
-      "line": 6
     }
   ]
 }
