@@ -1,6 +1,8 @@
+![img](https://cdn.auth0.com/website/auth0-training/auth0-labs-ext/oktane24.png)
+
 # Lab: Implement External User Verification with Auth0 Forms
 
-Launching a private beta for your app that requires external user verification? There's many solutions to this use case, but with Auth0 Forms you can gate access to app login without blocking user sign up, so they can easily join in when your app goes public. It's as easy as configuring an Auth0 Form and writing a Post-Login Action to prompt the user for a provided verification code.
+Launching a private beta for your app that requires external user verification? There's many solutions to this use case, but with Auth0 Forms you can gate access to app login without blocking user sign up, so they can easily join in when your app goes public. It's as easy as configuring an Auth0 Form and writing a Post-Login Action to prompt the user for a provided verification code. For further reading on this use case, see [External User Verification with Forms](https://auth0.com/blog/external-user-verification-with-forms/) on the Auth0 blog. 
 
 Forms for Actions is a visual editor tool that streamlines the registration and login flows. Forms allow you to build custom forms connected to the Universal Login page. With Forms, you don't need to redirect users to your application to prompt end users for additional data that should be available at or after the registration or login process. You can build and manage the identity flow using UI components, custom business logic, and integration with APIs based on a low-code solution. This gives you the flexibility to create personalized experiences that increase user conversion and retention!
 

@@ -1,6 +1,6 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "#4 - Test your Form flow",
+  "title": "#3 - Test your Form flow",
   "nextTour": "",
   "steps": [
     {
@@ -26,7 +26,7 @@
     },
     {
       "title": "Check your user metadata",
-      "description": "## Check your user metadata\n\nNow let's check the user you just signed up with to log in to the application.\n\n1. From the Auth0 Dashboard, go to **User Management** > **Users**.\n1. Select the user you just created.\n1. Navigate to the **app_metadata**.\n1. Notice the \"isPrivateBetaUser\": true property. This was added by our Action so that the Form will not be rendered for this user again since they already successfully signed up for the private beta with a valid invitation code.\n1. To verify, you can try logging in as the same user and see that the Form is not rendered again.\n1. For the next test, set `isPrivateBetaUser` property to `false`."
+      "description": "## Check your user metadata\n\nNow let's check the user you just signed up with to log in to the application.\n\n1. From the Auth0 Dashboard, go to **User Management** > **Users**.\n1. Select the user you just created.\n1. Navigate to the **app_metadata**.\n1. Notice the \"isPrivateBetaUser\": true property. This was added by our Action so that the Form will not be rendered for this user again since they already successfully signed up for the private beta with a valid invitation code.\n1. To verify, you can try logging in as the same user and see that the Form is not rendered again.\n1. For the next test, set `isPrivateBetaUser` property to `false`. Don't forget to click the **Save** button."
     },
     {
       "title": "Test an invalid invitation code",

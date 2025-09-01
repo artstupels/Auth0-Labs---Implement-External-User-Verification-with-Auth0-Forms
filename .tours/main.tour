@@ -1,7 +1,7 @@
 {
   "$schema": "https://aka.ms/codetour-schema",
-  "title": "#2 - Create an Auth0 Form",
-  "nextTour": "#3 - Create an Auth0 Action",
+  "title": "#1 - Create an Auth0 Form",
+  "nextTour": "#2 - Create an Auth0 Action",
   "steps": [
     {
       "title": "Create an Auth0 Form",
@@ -81,7 +81,7 @@
     {
       "title": "Get the Form ID",
       "file": "notes.yml",
-      "description": "## Get the Form ID\n\nTo render a Form during the authentication flow, we must know the Form ID of the form we want to render. It looks like *\"ap_123...890\"*.\n\n1. Select the **<> Render** button.\n\n\n    >When you select the **<> Render** button, you will notice that it generates the sample **Auth0 Action** script, which you can copy and paste. In our case, we just need to take a note of the Form ID as we will be creating a custom Auth0 Action in the step. You can find the Form ID passed to `api.prompt.render()`.\n\n1. Copy the Form ID and paste it on the line highlighted above next to **Form ID:**.\n\n    ![Action sample code](https://cdn.auth0.com/website/auth0-training/oktane25/2H_2.png)",
+      "description": "## Get the Form ID\n\nTo render a Form during the authentication flow, we must know the Form ID of the form we want to render. It looks like *\"ap_123...890\"*.\n\n1. Select the **<> Render** button.\n\n    >When you select the **<> Render** button, you will notice that it generates the sample **Auth0 Action** script, which you can copy and paste. In our case, we just need to take a note of the **Form ID** as we will be creating a custom Auth0 Action in the step. You can find the Form ID passed to `api.prompt.render()` (See the red rectangle around the Form ID in the screenshot below).\n\n1. Copy the Form ID and paste it on the line highlighted above next to **Form ID:**.\n\n    ![Action sample code](https://cdn.auth0.com/website/auth0-training/oktane25/2H_2.png)",
       "line": 8
     }
   ]
